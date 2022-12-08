@@ -18,7 +18,7 @@ window.onload = ()=>{
     //console.log(board)
     //console.log(board[1][0].piece.movePossibilities(board));
     board[7][7].piece = new Rook(7, 7, "white");
-    board[4][4].piece = new Queen(4, 4, "white");
+    board[4][4].piece = new Bishop(4, 4, "white");
 
 
     console.log(board[4][4].piece.movePossibilities(board));

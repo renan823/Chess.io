@@ -1,6 +1,6 @@
 class Queen extends Piece{
     constructor(r, c, color){
-        super(r, c, color, 7, 7, "queen", 0);
+        super(r, c, color, "queen", 0);
     }
 
     movePossibilities(board){

@@ -1,6 +1,6 @@
 class Rook extends Piece{
     constructor(r, c, color){
-        super(r, c, color, 7, 7, "rook", 0);
+        super(r, c, color, "rook", 0);
     }
 
     movePossibilities(board){
