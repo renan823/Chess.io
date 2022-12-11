@@ -1,6 +1,7 @@
 class Queen extends Piece{
     constructor(r, c, color){
         super(r, c, color, "queen", 0);
+        this.image = this.getImage("Queen")
     }
 
     movePossibilities(board){

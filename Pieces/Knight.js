@@ -1,6 +1,7 @@
 class Knight extends Piece{
     constructor(r, c, color){
         super(r, c, color, "knight", 0);
+        this.image = this.getImage("Knight");
     }
 
     movePossibilities(board){

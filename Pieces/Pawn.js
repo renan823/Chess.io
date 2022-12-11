@@ -1,6 +1,7 @@
 class Pawn extends Piece{
     constructor(r, c, color, moveStepX, moveStepY){
         super(r, c, color, moveStepX, moveStepY, "pawn", 0);
+        this.image = this.getImage("Pawn");
     }
 
     movePossibilities(board){

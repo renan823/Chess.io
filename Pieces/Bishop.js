@@ -1,7 +1,9 @@
 class Bishop extends Piece{
     constructor(r, c, color){
         super(r, c, color, "bishop", 0);
+        this.image = this.getImage("Bishop");
     }
+
 
     movePossibilities(board){
         let actualRowIndex = this.r;

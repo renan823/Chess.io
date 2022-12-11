@@ -1,6 +1,7 @@
 class Rook extends Piece{
     constructor(r, c, color){
         super(r, c, color, "rook", 0);
+        this.image = this.getImage("Rook");
     }
 
     movePossibilities(board){

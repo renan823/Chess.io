@@ -5,6 +5,14 @@ class Piece{
         this.color = color;
         this.type = type;
         this.totalMoves = totalMoves;
+        this.image;
+    }
+
+    getImage(piece){
+        let url = "./Images/";
+        let color = this.color.slice(0, 1);
+        url = url + color + piece + ".png";
+        return url;
     }
 
     canKill(square){

@@ -8,28 +8,29 @@ class Board{
         //Internal for -> columns
         
         for(let r = 0; r < 8; r++){
+            let y = r*100;
             let row = []
             for(let c = 0; c < 8; c++){
 
                 let square = {
                     r: r,
                     c: c,
-                    color: 'black',
+                    color: '#DFF5CE',
                     piece: null,
-                    x: r*100,
-                    y: c*100,
+                    x: c*100,
+                    y: r*100,
                     w: 100,
                     h: 100
                 };
 
                 if((r+1) % 2 !== 0){
                     if((c+1) % 2 === 0){
-                        square.color = 'white';
+                        square.color = '#72CC50';
                     }
                 }
                 else{
                     if((c+1) % 2 !== 0){
-                        square.color = 'white';
+                        square.color = '#72CC50';
                     }
                 }
                 row.push(square);
