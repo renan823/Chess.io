@@ -29,19 +29,20 @@ const whitePieces = {
 
 
 const init = (board)=>{
-
+    
     let cont;
+    
     //black pawns
     cont = 0;
     board[blackPieces.r2].forEach(square => {
-        square.piece = new Pawn(cont+1, blackPieces.r2, "black", 1, 1);
+        square.piece = new Pawn(blackPieces.r2, cont, "black", 1);
         cont++
     });
 
     //white pawns
     cont = 0;
     board[whitePieces.r2].forEach(square => {
-        square.piece = new Pawn(cont+1, whitePieces.r2, "white", -1, -1);
+        square.piece = new Pawn(whitePieces.r2, cont, "white", -1);
         cont++
     });
 

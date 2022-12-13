@@ -19,20 +19,17 @@ class Piece{
         if(square.piece.color === this.color){
             return false;
         }
-
         if(square.piece.type === "king"){
             return false;
         }
-
         return true;
     }
 
     hasPiece(square){
-        if(square.piece === null){
-            return false;
+        if(square.piece !== null){
+            return true;
         }
-
-        return true;
+        return false;
     }
 
     move(row, column, board){

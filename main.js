@@ -32,6 +32,7 @@ window.onload = ()=>{
             if(square.piece !== null){
                 if(round.color === square.piece.color){
                     round.possibleMoves = board[square.r][square.c].piece.movePossibilities(board);
+                    console.log(round.possibleMoves)
                     round.actualPosition.r = square.r;
                     round.actualPosition.c = square.c;
                     round.clicks++;
@@ -39,26 +40,31 @@ window.onload = ()=>{
             }
         }
         else{
-            for(let i = 0; i < round.possibleMoves.length; i++){
-                let item = round.possibleMoves[i];
-                if(item.c === square.c && item.r === square.r){
-
-                    let piece = board[round.actualPosition.r][round.actualPosition.c].piece;
-                    piece.totalMoves++;
-                    board[square.r][square.c].piece = piece;
-                    board[square.r][square.c].piece.r = square.r;
-                    board[square.r][square.c].piece.c = square.c;
-                    board[round.actualPosition.r][round.actualPosition.c].piece = null;
-
-                    render.draw(board);
-
-                    round.clicks = 0;
-                    round.possibleMoves = [];
-                    if(round.color === "white"){
-                        round.color = "black";
-                    }
-                    else{
-                        round.color = "white"
+            if(round.possibleMoves.length === 0){
+                round.clicks = 0;
+            }
+            else{
+                for(let i = 0; i < round.possibleMoves.length; i++){
+                    let item = round.possibleMoves[i];
+                    if(item.c === square.c && item.r === square.r){
+    
+                        let piece = board[round.actualPosition.r][round.actualPosition.c].piece;
+                        piece.totalMoves++;
+                        board[square.r][square.c].piece = piece;
+                        board[square.r][square.c].piece.r = square.r;
+                        board[square.r][square.c].piece.c = square.c;
+                        board[round.actualPosition.r][round.actualPosition.c].piece = null;
+    
+                        render.draw(board);
+    
+                        round.clicks = 0;
+                        round.possibleMoves = [];
+                        if(round.color === "white"){
+                            round.color = "black";
+                        }
+                        else{
+                            round.color = "white"
+                        }
                     }
                 }
             }
