@@ -19,7 +19,8 @@ window.onload = ()=>{
         color: "white",
         clicks: 0,
         possibleMoves: [],
-        actualPosition: {r: null, c: null}
+        actualPosition: {r: null, c: null},
+        oldSquare: null
     };
 
 
@@ -32,7 +33,8 @@ window.onload = ()=>{
             if(square.piece !== null){
                 if(round.color === square.piece.color){
                     round.possibleMoves = board[square.r][square.c].piece.movePossibilities(board);
-                    console.log(round.possibleMoves)
+                    console.log(round.possibleMoves);
+                    round.oldSquare = square;
                     round.actualPosition.r = square.r;
                     round.actualPosition.c = square.c;
                     round.clicks++;
@@ -59,6 +61,7 @@ window.onload = ()=>{
     
                         round.clicks = 0;
                         round.possibleMoves = [];
+                        round.oldSquare = null;
                         if(round.color === "white"){
                             round.color = "black";
                         }
@@ -72,6 +75,7 @@ window.onload = ()=>{
     })
 }
 
+//Find a square in board with position (x, y)
 const getSquare = (x, y, board)=>{
     for(let r = 0; r < board.length; r++){
         let row = board[r];

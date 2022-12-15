@@ -8,7 +8,6 @@ class Board{
         //Internal for -> columns
         
         for(let r = 0; r < 8; r++){
-            let y = r*100;
             let row = []
             for(let c = 0; c < 8; c++){
 

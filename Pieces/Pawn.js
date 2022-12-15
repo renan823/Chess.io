@@ -11,25 +11,13 @@ class Pawn extends Piece{
         let nextPosition = actualRowIndex+this.moveStep;
         let square;
         let possibleMoves = [];
-        
-        if(this.totalMoves === 0){
-            square = board[nextPosition][actualColumnIndex]
-            if(!this.hasPiece(square)){
-                possibleMoves.push({r: nextPosition, c: actualColumnIndex, kill: false});
-            }
-            square = board[nextPosition+this.moveStep][actualColumnIndex]
-            if(!this.hasPiece(square)){
-                possibleMoves.push({r: nextPosition+this.moveStep, c: actualColumnIndex, kill: false});
-            }
-            
-            return possibleMoves;
-        }
 
         if(actualRowIndex > 0 && actualRowIndex < board.length -1){
-            console.log(board[nextPosition])
-            square = board[nextPosition][actualColumnIndex];
-            if(!this.hasPiece(square)){
-                possibleMoves.push({r: nextPosition, c: actualColumnIndex, kill: false});
+            if(this.totalMoves > 0){
+                square = board[nextPosition][actualColumnIndex];
+                if(!this.hasPiece(square)){
+                    possibleMoves.push({r: nextPosition, c: actualColumnIndex, kill: false});
+                }
             }
 
             if(actualColumnIndex + 1 < board.length){
@@ -50,6 +38,20 @@ class Pawn extends Piece{
                 }
             }
         }
+        
+        if(this.totalMoves === 0){
+            square = board[nextPosition][actualColumnIndex]
+            if(!this.hasPiece(square)){
+                possibleMoves.push({r: nextPosition, c: actualColumnIndex, kill: false});
+            }
+            square = board[nextPosition+this.moveStep][actualColumnIndex]
+            if(!this.hasPiece(square)){
+                possibleMoves.push({r: nextPosition+this.moveStep, c: actualColumnIndex, kill: false});
+            }
+            
+            return possibleMoves;
+        }
+
 
 
     

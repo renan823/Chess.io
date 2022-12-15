@@ -4,6 +4,20 @@ class Queen extends Piece{
         this.image = this.getImage("Queen")
     }
 
+    //Can move => Bishop moves
+    canMove(board, i, j){
+        let square = board[i][j];
+        if(this.hasPiece(square)){
+            if(this.canKill(square)){
+                return({r: i, c: j, kill: true});
+            }
+            return;
+        }
+        else{
+            return({r: i, c: j, kill: false});
+        }
+    }
+
     movePossibilities(board){
         let actualRowIndex = this.r;
         let actualColumnIndex = this.c;
@@ -78,85 +92,85 @@ class Queen extends Piece{
         }
 
         //upRight move
-        if(actualRowIndex != 0 && actualColumnIndex != 0){
-            let j = actualColumnIndex -1;
-            for(let i = actualRowIndex-1; i >= 0; i--){
-                if(j >= 0){
-                    let square = board[i][j];
-                    if(this.hasPiece(square)){
-                        if(this.canKill(square)){
-                            possibleMoves.push({r: i, c: j, kill: true});
+        if(actualRowIndex > 0 && actualColumnIndex < board.length-1){
+            let nextColumn = actualColumnIndex+1;
+
+            for(let r = actualRowIndex-1; r >= 0; r--){
+                if(nextColumn < board.length){
+                    let result = this.canMove(board, r, nextColumn);
+                    if(result){
+                        possibleMoves.push(result);
+                        if(result.kill){
                             break;
                         }
-                        break;
                     }
                     else{
-                        possibleMoves.push({r: i, c: j, kill: false});
+                        break;
                     }
-                    j--;
+                    nextColumn++;
                 }
             }
         }
 
         //upLeft move
-        if(actualRowIndex != 0 && actualColumnIndex != board.length){
-            let j = actualColumnIndex +1;
-            for(let i = actualRowIndex-1; i >= 0; i--){
-                if(j < board.length){
-                    let square = board[i][j];
-                    if(this.hasPiece(square)){
-                        if(this.canKill(square)){
-                            possibleMoves.push({r: i, c: j, kill: true});
+        if(actualRowIndex > 0 && actualColumnIndex > 0){
+            let nextColumn = actualColumnIndex-1;
+                
+            for(let r = actualRowIndex-1; r >= 0; r--){
+                if(nextColumn >= 0){
+                    let result = this.canMove(board, r, nextColumn);
+                    if(result){
+                        possibleMoves.push(result);
+                        if(result.kill){
                             break;
                         }
-                        break;
                     }
                     else{
-                        possibleMoves.push({r: i, c: j, kill: false});
+                        break;
                     }
-                    j++;
+                    nextColumn--;
                 }
             }
         }
 
-        //downRigth move
-        if(actualRowIndex != board.length && actualColumnIndex != 0){
-            let j = actualColumnIndex -1;
-            for(let i = actualRowIndex+1; i < board.length; i++){
-                if(j >= 0){
-                    let square = board[i][j];
-                    if(this.hasPiece(square)){
-                        if(this.canKill(square)){
-                            possibleMoves.push({r: i, c: j, kill: true});
+        //downRight move
+        if(actualRowIndex < board.length && actualColumnIndex < board.length-1){
+            let nextColumn = actualColumnIndex+1;
+
+            for(let r = actualRowIndex+1; r <= board.length-1; r++){
+                if(nextColumn < board.length){
+                    let result = this.canMove(board, r, nextColumn);
+                    if(result){
+                        possibleMoves.push(result);
+                        if(result.kill){
                             break;
                         }
-                        break;
                     }
                     else{
-                        possibleMoves.push({r: i, c: j, kill: false});
+                        break;
                     }
-                    j--;
+                    nextColumn++;
                 }
             }
         }
 
-        //downLeft move
-        if(actualRowIndex != board.length && actualColumnIndex != board.length){
-            let j = actualColumnIndex +1;
-            for(let i = actualRowIndex+1; i < board.length; i++){
-                if(j >= 0){
-                    let square = board[i][j];
-                    if(this.hasPiece(square)){
-                        if(this.canKill(square)){
-                            possibleMoves.push({r: i, c: j, kill: true});
+        //dowLeft move
+        if(actualRowIndex < board.length && actualColumnIndex > 0){
+            let nextColumn = actualColumnIndex-1;
+
+            for(let r = actualRowIndex+1; r <= board.length-1; r++){
+                if(nextColumn >= 0){
+                    let result = this.canMove(board, r, nextColumn);
+                    if(result){
+                        possibleMoves.push(result);
+                        if(result.kill){
                             break;
                         }
-                        break;
                     }
                     else{
-                        possibleMoves.push({r: i, c: j, kill: false});
+                        break;
                     }
-                    j++;
+                    nextColumn--;
                 }
             }
         }
