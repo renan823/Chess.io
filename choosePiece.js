@@ -1,0 +1,3 @@
+const choosePiece = ()=>{
+    return "bishop";
+}
